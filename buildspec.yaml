@@ -1,0 +1,23 @@
+version: 0.2
+phases:
+  install:
+    commands:
+    - pip install --upgrade pip
+    - pip install --user --upgrade awscli
+    - pip install --user --upgrade botocore
+    - pip install --user --upgrade boto3
+    - pip install --user --upgrade aws-sam-cli
+    - pip install --user --upgrade aws-sam-translator
+    runtime-versions:
+        python: 3.8
+  pre_build:
+    commands:
+      # Remove all unit tests to reduce the size of the package that will be ultimately uploaded to Lambda
+      - rm -rf ./tests
+  build:
+    commands:
+      # Use AWS SAM to package the application by using AWS CloudFormation
+      - sam build
+      #- sam deploy
+      - sam package --template-file template.yaml --s3-bucket csaa-ims-orchestrator-service-sam-package --output-template-file packaged-template.yml
+      - sam publish --template packaged-template.yml --region us-west-2 --semantic-version 0.0.$CODEBUILD_BUILD_NUMBER
