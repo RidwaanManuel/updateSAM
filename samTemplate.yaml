@@ -1,16 +1,13 @@
-AWSTemplateFormatVersion: '2010-09-09'
-Transform: AWS::Serverless-2016-10-31
-Description: Outputs the time
-Resources:
-  TimeFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: lambdahandler
-      Runtime: python3.8
-      CodeUri: ./
-      Events:
-        MyTimeApi:
-          Type: Api
-          Properties:
-            Path: /TimeResource
-            Method: GET
+MySampleStateMachine:
+  Type: AWS::Serverless::StateMachine
+  Properties:
+    Definition:
+      StartAt: MyLambdaState
+      States:
+        MyLambdaState:
+          Type: Task
+          Resource: arn:aws:lambda:us-east-1:306147912366:function:simplepyton
+          End: true
+    Role: arn:aws:iam::306147912366:role/service-role/StepFunctions-MyStateMachine-role-fe537b58
+    Tracing:
+      Enabled: True
