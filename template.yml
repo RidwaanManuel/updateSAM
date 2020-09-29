@@ -1,13 +1,14 @@
-MySampleStateMachine:
-  Type: AWS::Serverless::StateMachine
-  Properties:
-    Definition:
-      StartAt: MyLambdaState
-      States:
-        MyLambdaState:
-          Type: Task
-          Resource: arn:aws:lambda:us-east-1:306147912366:function:simplepyton
-          End: true
-    Role: arn:aws:iam::306147912366:role/service-role/StepFunctions-MyStateMachine-role-fe537b58
-    Tracing:
-      Enabled: True
+Resources:
+  MySampleStateMachine:
+    Type: AWS::Serverless::StateMachine
+    Properties:
+      Definition:
+        StartAt: MyLambdaState
+        States:
+          MyLambdaState:
+            Type: Task
+            Resource: arn:aws:lambda:us-east-1:306147912366:function:simplepyton
+            End: true
+      Role: arn:aws:iam::306147912366:role/service-role/StepFunctions-MyStateMachine-role-fe537b58
+      Tracing:
+        Enabled: True
