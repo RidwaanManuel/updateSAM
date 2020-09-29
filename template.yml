@@ -1,3 +1,11 @@
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Name: updateSAM
+    Description: Testing SAM Update to version 1.3.2
+    Author: Ridwaan M
+    ReadmeUrl: README.md
+    Labels: ['Test']
+    SourceCodeUrl: https://github.com/mineer22/updateSAM/
 Resources:
   MySampleStateMachine:
     Type: AWS::Serverless::StateMachine
