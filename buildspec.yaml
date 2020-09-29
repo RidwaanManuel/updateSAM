@@ -19,5 +19,5 @@ phases:
       # Use AWS SAM to package the application by using AWS CloudFormation
       - sam build --debug
       #- sam deploy
-      - sam package --template-file template.yaml --s3-bucket aws-codestar-us-east-1-306147912366 --output-template-file packaged-template.yml
+      - sam package --template-file template.yml --s3-bucket aws-codestar-us-east-1-306147912366 --output-template-file packaged-template.yml
       - sam publish --template packaged-template.yml --region us-east-1 --semantic-version 0.0.$CODEBUILD_BUILD_NUMBER
